@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smart-keyframe-extractor"
+version = "0.1.0"
+description = "智能视频关键帧提取工具，支持自适应模式、分辨率选择和Azure OpenAI分析"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+    {name = "jiajunchen", email = "your-email@example.com"}
+]
+keywords = ["video", "keyframe", "extraction", "computer-vision", "azure", "openai", "ai-analysis"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Multimedia :: Video",
+]
+
+dependencies = [
+    "opencv-python>=4.5.0",
+    "Pillow>=8.0.0",
+    "numpy>=1.19.0",
+    "requests>=2.25.0",
+]
+
+[project.optional-dependencies]
+azure = [
+    "openai>=1.0.0"
+]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=21.0",
+    "isort>=5.0",
+    "flake8>=3.8",
+    "mypy>=0.910",
+]
+all = [
+    "openai>=1.0.0",
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=21.0",
+    "isort>=5.0",
+    "flake8>=3.8",
+    "mypy>=0.910",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-username/smart-keyframe-extractor"
+Repository = "https://github.com/your-username/smart-keyframe-extractor"
+Documentation = "https://github.com/your-username/smart-keyframe-extractor/blob/main/README.md"
+"Bug Tracker" = "https://github.com/your-username/smart-keyframe-extractor/issues"
+
+[project.scripts]
+smart-keyframe = "smart_keyframe_extractor.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["smart_keyframe_extractor*"]
+
+[tool.setuptools.package-data]
+smart_keyframe_extractor = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true

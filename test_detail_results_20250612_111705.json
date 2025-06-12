@@ -1,0 +1,50 @@
+{
+  "test_timestamp": "2025-06-12T11:17:05.446620",
+  "video_path": "videos/785023.mp4",
+  "extraction_config": {
+    "k": 2,
+    "resolution": "360p",
+    "return_base64": true,
+    "save_files": false
+  },
+  "frames_extracted": 2,
+  "test_results": [
+    {
+      "status": "✅ 成功",
+      "detail_mode": "low",
+      "tokens_used": 609,
+      "content_preview": "1. 场景描述：\n这两个关键帧均拍摄于一个封闭的车库内部，画面中停放着一辆黑色SUV汽车。车库内环境较为杂乱，左侧墙壁上挂有多个工具和物品，地面上有鞋子和其他杂物。车库门为卷帘门，处于关闭状态。画面右...",
+      "test_time": 4.968456745147705,
+      "description": "低精度模式 - 快速分析"
+    },
+    {
+      "status": "✅ 成功",
+      "detail_mode": "high",
+      "tokens_used": 810,
+      "content_preview": "分析报告：\n\n1. 场景描述：\n该视频帧拍摄于一个室内车库环境。车库内部照明较暗，但画面清晰可见。墙面和地面均为灰色调，地面为混凝土地面，车库门为卷帘式，关闭状态。\n\n2. 时间流程：\n- 帧1（0....",
+      "test_time": 3.9664788246154785,
+      "description": "高精度模式 - 详细分析"
+    },
+    {
+      "status": "✅ 成功",
+      "detail_mode": "auto",
+      "tokens_used": 801,
+      "content_preview": "视频内容分析报告：\n\n1. 场景描述：\n- 该视频拍摄于一个室内车库，环境光线较暗，应该是清晨（时间显示为2022年2月1日06:11）。\n- 画面中主体是一辆黑色的SUV，停放在车库内靠近车库门的位...",
+      "test_time": 2.571084976196289,
+      "description": "自动模式 - 智能选择"
+    },
+    {
+      "status": "✅ 成功",
+      "detail_mode": "invalid_mode",
+      "tokens_used": 796,
+      "content_preview": "视频内容分析报告：\n\n1. 场景描述：\n- 帧1：画面显示一个室内车库，内停放着一辆深色SUV车辆。车库内左侧放置有鞋子和一些杂物，右侧角落有一些宠物用品或其它物品。地面为混凝土。画面右下角有一只浣熊...",
+      "test_time": 2.8578782081604004,
+      "description": "无效参数测试 - 应回退到高精度"
+    }
+  ],
+  "summary": {
+    "total_tests": 4,
+    "successful_tests": 4,
+    "failed_tests": 0
+  }
+}
