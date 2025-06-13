@@ -1,0 +1,56 @@
+{
+  "summary": {
+    "total_tasks": 598,
+    "successful_tasks": 598,
+    "failed_tasks": 0,
+    "success_rate": 100.0
+  },
+  "performance": {
+    "execution_time": {
+      "mean": 30.095832401693464,
+      "median": 14.498713374137878,
+      "min": 1.8072679042816162,
+      "max": 987.9598910808563,
+      "std": 108.98923139168232
+    },
+    "memory_usage": {
+      "mean": 8.893629807692308,
+      "median": 3.640625,
+      "min": -700.484375,
+      "max": 1234.171875,
+      "std": 189.59728873590294
+    },
+    "keyframes_extracted": {
+      "mean": 5,
+      "median": 5.0,
+      "min": 5,
+      "max": 5,
+      "total": 2990
+    }
+  },
+  "system_performance": {
+    "avg_cpu_percent": 96.38632286995515,
+    "max_cpu_percent": 100.0,
+    "min_cpu_percent": 0.0,
+    "avg_memory_percent": 81.90351270553064,
+    "max_memory_percent": 83.3,
+    "min_memory_percent": 79.1,
+    "avg_disk_read_speed": 8.84848537929746,
+    "avg_disk_write_speed": 3.738325042040359,
+    "avg_network_recv_speed": 0.31858563387518685,
+    "avg_network_sent_speed": 0.024796512985799702
+  },
+  "timestamp": "2025-06-13T10:58:37.238013",
+  "test_parameters": {
+    "video_dirs": [
+      "/Users/jiajunchen/Code/wyze-ai/insight_videos"
+    ],
+    "test_profile": "standard",
+    "test_mode": "concurrent",
+    "max_workers": 8,
+    "iterations": 1,
+    "total_videos": 299,
+    "total_configs": 2,
+    "total_tasks": 598
+  }
+}

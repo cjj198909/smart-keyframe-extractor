@@ -50,6 +50,41 @@
 - **依赖**: `psutil`, `pandas`
 - **适用场景**: 云服务器性能验证、生产环境压力测试
 
+### 6. Wyze视频压力测试 (`wyze_stress_test.py`)
+- **用途**: 专门针对Wyze AI视频数据集的大规模测试
+- **特点**: 
+  - 支持多视频目录批量处理
+  - 真实数据集验证
+  - 完整的性能分析和报告
+- **适用场景**: 真实环境压力验证
+
+### 7. 智能性能优化器 (`performance_optimizer.py`) 🆕
+- **用途**: 基于测试结果的智能性能分析和优化建议
+- **特点**:
+  - 自动分析历史测试数据
+  - 智能配置推荐 (速度/质量/平衡)
+  - 详细的性能瓶颈分析
+  - 自动优化建议生成
+- **适用场景**: 性能调优和配置优化
+
+### 8. 分支性能对比器 (`branch_comparator.py`) 🆕
+- **用途**: 比较不同Git分支间的性能差异
+- **特点**:
+  - 自动切换分支进行测试
+  - 详细的性能差异分析
+  - 合并建议生成
+  - 回归检测
+- **适用场景**: 代码变更性能影响评估
+
+### 9. 智能批处理器 (`intelligent_batch_processor.py`) 🆕
+- **用途**: 基于视频复杂度的智能批处理优化
+- **特点**:
+  - 视频复杂度自动分析
+  - 智能分批策略
+  - 动态并发调整
+  - 最优化处理顺序
+- **适用场景**: 大规模视频批处理优化
+
 ## 🚀 快速开始
 
 ### 使用统一入口
@@ -76,6 +111,18 @@ python benchmark/concurrent_stress_test.py
 
 # 云服务器压力测试
 python benchmark/cloud_stress_test.py --video-dirs /path/to/videos
+
+# Wyze视频压力测试
+python benchmark/wyze_stress_test.py --video-dirs /path/to/wyze_videos
+
+# 智能性能优化器
+python benchmark/performance_optimizer.py --analyze history_results/
+
+# 分支性能对比器
+python benchmark/branch_comparator.py --branch feature-branch
+
+# 智能批处理器
+python benchmark/intelligent_batch_processor.py --video-dirs /path/to/videos
 ```
 
 ### 云服务器一键部署
