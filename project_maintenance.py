@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-项目文件清理脚本
-Project File Cleanup Script
+项目维护脚本
+Project Maintenance Script
 
-清理不需要的文件，优化项目结构
+优化项目结构，清理临时文件和缓存
 """
 
 import os
@@ -12,8 +12,8 @@ import glob
 from pathlib import Path
 from typing import List, Dict, Tuple
 
-class ProjectCleaner:
-    """项目清理器"""
+class ProjectMaintainer:
+    """项目维护器"""
     
     def __init__(self, project_root: str):
         self.project_root = Path(project_root)
@@ -211,18 +211,18 @@ def main():
     
     args = parser.parse_args()
     
-    cleaner = ProjectCleaner(args.project_root)
+    maintainer = ProjectMaintainer(args.project_root)
     
     print("🚀 Smart Keyframe Extractor - 项目文件清理工具")
     print(f"📁 项目路径: {os.path.abspath(args.project_root)}")
     print(f"🔍 模式: {'执行清理' if args.execute else '预览分析'}")
     
-    removed_count, size_mb = cleaner.perform_cleanup(dry_run=not args.execute)
-    cleaner.create_cleanup_summary(removed_count, size_mb, dry_run=not args.execute)
+    removed_count, size_mb = maintainer.perform_cleanup(dry_run=not args.execute)
+    maintainer.create_cleanup_summary(removed_count, size_mb, dry_run=not args.execute)
     
     if not args.execute and removed_count > 0:
         print(f"\n🔧 执行清理命令:")
-        print(f"python cleanup_project.py --execute")
+        print(f"python project_maintenance.py --execute")
 
 if __name__ == "__main__":
     main()
