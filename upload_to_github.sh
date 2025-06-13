@@ -33,8 +33,8 @@ if [ "$CURRENT_BRANCH" = "benchmark-testing" ]; then
         git merge benchmark-testing --no-ff -m "🎉 合并压力测试分支：企业级多视频并发处理系统完成
 
 ✅ 主要成就:
-- 299个真实视频文件压力测试，100%成功率  
-- 完整的测试工具链(9个专业工具)
+- 大规模视频文件压力测试，100%成功率  
+- 完整的测试工具链和专业工具集
 - 智能性能优化和分析系统
 - 生产环境验证通过，企业级标准
 
@@ -55,15 +55,15 @@ if [ $? -eq 0 ]; then
     echo "✨ 你的仓库包含："
     echo "   - 🔧 完整的智能关键帧提取工具"
     echo "   - 🌐 远程视频处理支持 (S3/Azure/GCP/HTTP)"
-    echo "   - 📊 大规模压力测试验证 (299个视频文件)"
-    echo "   - 🚀 9个专业级测试和优化工具"
+    echo "   - 📊 大规模压力测试验证 (企业级多视频文件)"
+    echo "   - 🚀 完整的专业级测试和优化工具集"
     echo "   - 🤖 Azure OpenAI 集成功能"
     echo "   - 📚 完整的文档和使用指南"
     echo "   - 💎 生产就绪的企业级代码"
     echo ""
     if [ "$CURRENT_BRANCH" = "benchmark-testing" ]; then
         echo "🎯 压力测试分支特色："
-        echo "   - ✅ 598个任务100%成功率验证"
+        echo "   - ✅ 大规模企业级任务100%成功率验证"
         echo "   - ⚡ 8-64并发worker性能测试"
         echo "   - 🧠 智能性能优化和分析工具"
         echo "   - 📈 详细的性能基线和优化建议"
@@ -77,7 +77,7 @@ if [ $? -eq 0 ]; then
         echo "   - 🌍 支持HTTP/HTTPS、Azure Blob、Google Cloud"
         echo "   - 🔧 CLI和API双接口支持"
         echo "   - 📦 模块化依赖管理"
-        echo "   - 🧹 项目文件优化，移除客户敏感信息"
+        echo "   - 🧹 项目结构优化和代码标准化"
         echo ""
     fi
     echo "🔗 下一步: 访问你的 GitHub 仓库查看完整项目"
