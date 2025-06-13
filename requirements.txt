@@ -1,0 +1,23 @@
+# Smart Keyframe Extractor - 核心依赖
+# Core dependencies for Smart Keyframe Extractor
+
+# 计算机视觉和图像处理
+opencv-python>=4.5.0
+Pillow>=8.0.0
+numpy>=1.19.0
+
+# 网络请求
+requests>=2.28.0
+
+# ===========================================
+# 可选依赖 (Optional Dependencies)
+# ===========================================
+
+# 安装远程视频支持:
+# pip install -r requirements.txt -r requirements-remote.txt
+
+# 安装Azure OpenAI支持:
+# pip install smart-keyframe-extractor[azure]
+
+# 安装所有功能:
+# pip install smart-keyframe-extractor[all]

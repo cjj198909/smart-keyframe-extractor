@@ -33,13 +33,26 @@ dependencies = [
     "opencv-python>=4.5.0",
     "Pillow>=8.0.0",
     "numpy>=1.19.0",
-    "requests>=2.25.0",
+    "requests>=2.28.0",
 ]
 
 [project.optional-dependencies]
+# Azure OpenAI集成
 azure = [
     "openai>=1.0.0"
 ]
+
+# 远程视频支持 (Remote video support)
+remote = [
+    "boto3>=1.26.0",           # AWS S3支持
+    "botocore>=1.29.0",        # AWS核心库
+    "azure-storage-blob>=12.14.0",  # Azure Blob Storage支持
+    "azure-core>=1.26.0",      # Azure核心库
+    "google-cloud-storage>=2.7.0",  # Google Cloud Storage支持
+    "google-api-core>=2.11.0", # Google API核心库
+]
+
+# 开发依赖
 dev = [
     "pytest>=6.0",
     "pytest-cov>=2.0",
@@ -48,9 +61,17 @@ dev = [
     "flake8>=3.8",
     "mypy>=0.910",
 ]
+
+# 所有可选依赖
 all = [
-    "openai>=1.0.0",
-    "pytest>=6.0",
+    "openai>=1.0.0",          # Azure OpenAI
+    "boto3>=1.26.0",          # AWS S3
+    "botocore>=1.29.0", 
+    "azure-storage-blob>=12.14.0",  # Azure Blob
+    "azure-core>=1.26.0",
+    "google-cloud-storage>=2.7.0",  # Google Cloud
+    "google-api-core>=2.11.0",
+    "pytest>=6.0",            # 开发工具
     "pytest-cov>=2.0",
     "black>=21.0",
     "isort>=5.0",

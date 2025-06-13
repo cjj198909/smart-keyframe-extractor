@@ -39,26 +39,49 @@ pip install -e .
 
 ## 安装
 
-### 基础安装
+### 🎯 选择安装方式
+
+#### 1. 基础安装（本地视频处理）
 ```bash
 pip install smart-keyframe-extractor
 ```
 
-### 包含Azure OpenAI支持
+#### 2. 包含远程视频支持（推荐）
+```bash
+# 安装所有功能（包含云存储支持）
+pip install smart-keyframe-extractor[all]
+
+# 或者分步安装
+pip install smart-keyframe-extractor[remote]  # 仅远程视频支持
+```
+
+#### 3. 包含Azure OpenAI支持
 ```bash
 pip install smart-keyframe-extractor[azure]
 ```
 
-### 开发版本安装
+#### 4. 开发者安装
 ```bash
-pip install smart-keyframe-extractor[all]
+git clone https://github.com/cjj198909/smart-keyframe-extractor.git
+cd smart-keyframe-extractor
+pip install -e .[all]
 ```
 
-### 远程视频支持（可选）
-如需处理远程视频（HTTP/HTTPS、云存储），请安装额外依赖：
-```bash
-pip install requests boto3 azure-storage-blob google-cloud-storage
-```
+### 📦 依赖说明
+
+**核心依赖**（自动安装）：
+- `opencv-python>=4.5.0` - 视频处理
+- `Pillow>=8.0.0` - 图像处理  
+- `numpy>=1.19.0` - 数值计算
+- `requests>=2.28.0` - HTTP请求
+
+**远程视频支持**（可选）：
+- `boto3>=1.26.0` - AWS S3支持
+- `azure-storage-blob>=12.14.0` - Azure Blob存储支持
+- `google-cloud-storage>=2.7.0` - Google Cloud存储支持
+
+**Azure OpenAI支持**（可选）：
+- `openai>=1.0.0` - Azure OpenAI集成
 
 ## 系统依赖
 
