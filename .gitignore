@@ -26,12 +26,22 @@ Thumbs.db
 .coverage
 htmlcov/
 
-# Documentation
-docs/_build/
+# Test results and logs
+stress_test_*.log
+benchmark_results/*.json
+benchmark_results/*.csv
+wyze_auto_results/
+*_TEST_REPORT.md
+*_COMPLETION_*.md
+*_SUMMARY.md
+
+# Documentation (keep only core docs)
+# Keep: README.md, LICENSE, *_GUIDE.md, COMPLETE_PROJECT_REPORT.md
 
 # Temporary files
 *.tmp
 *.temp
+cache/
 
 # Video files (for testing)
 *.mp4
@@ -41,6 +51,7 @@ docs/_build/
 
 # Output directories
 output_frames/
+output_*/
 keyframes_*/
 
 # Azure credentials

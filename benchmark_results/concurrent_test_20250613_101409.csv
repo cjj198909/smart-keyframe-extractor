@@ -1,4 +1,0 @@
-task_id,thread_id,video_path,video_filename,config,success,execution_time,memory_usage,keyframes_extracted,error,timestamp,video_size_mb,video_duration,fps_processed
-iter_1_config_1_video_1,0,videos/785023.mp4,785023.mp4,"{'name': 'standard', 'k': 5, 'frame_skip': 1, 'resolution': 'original'}",False,0.0,0.0,0,name 'cv2' is not defined,2025-06-13T10:14:08.385644,0.0,0.0,0.0
-iter_1_config_3_video_3,0,videos/785023.mp4,785023.mp4,"{'name': 'ultra_fast', 'k': 3, 'frame_skip': 3, 'resolution': '480p'}",False,0.0,0.0,0,name 'cv2' is not defined,2025-06-13T10:14:08.385595,0.0,0.0,0.0
-iter_1_config_2_video_2,1,videos/785023.mp4,785023.mp4,"{'name': 'fast', 'k': 5, 'frame_skip': 2, 'resolution': '720p'}",False,0.0,0.0,0,name 'cv2' is not defined,2025-06-13T10:14:08.385822,0.0,0.0,0.0
