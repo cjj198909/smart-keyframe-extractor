@@ -21,6 +21,17 @@ from pathlib import Path
 import heapq
 from io import BytesIO
 
+# 导入远程视频支持
+try:
+    from .remote_video_utils import (
+        RemoteVideoDownloader, 
+        is_remote_url, 
+        get_video_url_info
+    )
+    HAS_REMOTE_SUPPORT = True
+except ImportError:
+    HAS_REMOTE_SUPPORT = False
+
 # 配置日志
 logging.basicConfig(
     level=logging.INFO,
@@ -30,11 +41,29 @@ logger = logging.getLogger(__name__)
 
 
 class SmartKeyFrameExtractor:
-    """智能关键帧提取器 - 支持base64输出"""
+    """智能关键帧提取器 - 支持base64输出和远程视频"""
     
-    def __init__(self, ffmpeg_path: str = "ffmpeg", ffprobe_path: str = "ffprobe"):
+    def __init__(self, ffmpeg_path: str = "ffmpeg", ffprobe_path: str = "ffprobe", 
+                 enable_remote: bool = True, cache_dir: Optional[str] = None):
+        """
+        初始化智能关键帧提取器
+        
+        Args:
+            ffmpeg_path: FFmpeg可执行文件路径
+            ffprobe_path: FFprobe可执行文件路径  
+            enable_remote: 是否启用远程视频支持
+            cache_dir: 远程视频缓存目录
+        """
         self.ffmpeg_path = ffmpeg_path
         self.ffprobe_path = ffprobe_path
+        self.enable_remote = enable_remote
+        
+        # 初始化远程视频下载器
+        if self.enable_remote and HAS_REMOTE_SUPPORT:
+            self.remote_downloader = RemoteVideoDownloader(cache_dir=cache_dir)
+        else:
+            self.remote_downloader = None
+            
         self._check_installations()
     
     def _check_installations(self):
@@ -63,6 +92,44 @@ class SmartKeyFrameExtractor:
         
         cap.release()
         return info
+    
+    def _prepare_video_path(self, video_path: str, use_cache: bool = True) -> Tuple[str, bool]:
+        """
+        准备视频路径，如果是远程URL则下载到本地
+        
+        Args:
+            video_path: 视频路径或URL
+            use_cache: 是否使用缓存
+            
+        Returns:
+            (local_path, is_temporary) - 本地路径和是否为临时文件的标志
+        """
+        # 检查是否为远程URL
+        if not is_remote_url(video_path):
+            return video_path, False
+        
+        # 检查远程支持
+        if not self.enable_remote or not self.remote_downloader:
+            if not HAS_REMOTE_SUPPORT:
+                raise RuntimeError(
+                    "远程视频功能不可用。请安装必要的依赖:\n"
+                    "pip install requests boto3 azure-storage-blob google-cloud-storage"
+                )
+            else:
+                raise RuntimeError("远程视频功能已禁用。请在初始化时设置 enable_remote=True")
+        
+        # 获取URL信息
+        url_info = get_video_url_info(video_path)
+        logger.info(f"检测到远程视频: {url_info['storage_type']} - {video_path}")
+        
+        # 下载视频
+        local_path = self.remote_downloader.download_video(video_path, use_cache=use_cache)
+        if local_path is None:
+            raise RuntimeError(f"下载远程视频失败: {video_path}")
+        
+        # 返回本地路径和临时文件标志
+        is_temporary = not use_cache
+        return local_path, is_temporary
     
     def get_resolution_params(self, resolution: str, original_width: int, original_height: int) -> Tuple[Optional[str], Optional[str]]:
         """
@@ -501,14 +568,17 @@ def extract_top_k_keyframes(video_path: str, output_dir: str = None,
     logger.info(f"返回base64: {return_base64}")
     logger.info(f"保存文件: {save_files}")
     
-    if not os.path.exists(video_path):
-        return {'error': '视频文件不存在'}
+    extractor = SmartKeyFrameExtractor(enable_remote=True)
     
-    extractor = SmartKeyFrameExtractor()
+    # 准备视频路径（支持远程URL）
+    try:
+        prepared_video_path, is_temporary = extractor._prepare_video_path(video_path)
+    except Exception as e:
+        return {'error': f'视频准备失败: {str(e)}'}
     
     # 1. 分析所有帧的变化
     logger.info("步骤 1/3: 分析视频帧变化...")
-    frame_changes, video_info = extractor.compute_frame_changes(video_path, sample_rate=1)
+    frame_changes, video_info = extractor.compute_frame_changes(prepared_video_path, sample_rate=1)
     
     if not frame_changes:
         return {'error': '无法分析视频'}
@@ -539,7 +609,7 @@ def extract_top_k_keyframes(video_path: str, output_dir: str = None,
     # 4. 提取高质量帧（包含分辨率调整和base64编码）
     logger.info(f"\n步骤 3/3: 提取高质量关键帧...")
     saved_frames = extractor.extract_frames_with_ffmpeg(
-        video_path, selected_frames, output_dir, resolution,
+        prepared_video_path, selected_frames, output_dir, resolution,
         return_base64=return_base64, save_files=save_files
     )
     
@@ -592,6 +662,17 @@ def extract_top_k_keyframes(video_path: str, output_dir: str = None,
     if output_dir and save_files:
         logger.info(f"\n输出目录: {output_dir}")
     logger.info(f"{'='*60}\n")
+    
+    # 清理临时文件（如果有）
+    if is_temporary and os.path.exists(prepared_video_path):
+        try:
+            if extractor.remote_downloader:
+                extractor.remote_downloader.cleanup_temp_file(prepared_video_path)
+            else:
+                os.unlink(prepared_video_path)
+            logger.info(f"已清理临时文件: {prepared_video_path}")
+        except Exception as e:
+            logger.warning(f"清理临时文件失败: {e}")
     
     return result
 

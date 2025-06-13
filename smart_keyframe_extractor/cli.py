@@ -27,12 +27,21 @@ def main():
   # 每10秒提取1帧，原始分辨率，仅输出base64
   smart-keyframe video.mp4 --mode interval --interval 10 --frames-per-interval 1 --base64
   
-  # 每5秒提取2帧，最少3帧，最多20帧，360p分辨率，保存文件
-  smart-keyframe video.mp4 -o output_frames --mode interval --interval 5 --frames-per-interval 2 --min-frames 3 --max-frames 20 --resolution 360p --save-files
+  # 远程视频处理（HTTP/HTTPS URL）
+  smart-keyframe https://example.com/video.mp4 -k 5 --resolution 720p --base64
+  
+  # AWS S3视频处理
+  smart-keyframe s3://my-bucket/video.mp4 -k auto --resolution 480p --base64
+  
+  # Azure Blob Storage视频处理  
+  smart-keyframe https://myaccount.blob.core.windows.net/container/video.mp4 -k 5 --base64
+  
+  # Google Cloud Storage视频处理
+  smart-keyframe gs://my-bucket/video.mp4 -k auto --resolution 720p --base64
         """
     )
     
-    parser.add_argument('input', help='视频文件路径')
+    parser.add_argument('input', help='视频文件路径或远程URL（支持HTTP/HTTPS、S3、Azure Blob、Google Cloud Storage）')
     parser.add_argument('-o', '--output', help='输出目录（当--save-files时必需）')
     parser.add_argument('-k', '--keyframes', default='5',
                        help='要提取的关键帧数量，可以是数字或 "auto"')

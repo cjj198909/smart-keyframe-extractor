@@ -14,6 +14,7 @@
 - 🔄 **自适应模式**: 根据视频时长自动计算最佳帧数
 - 📐 **多分辨率支持**: 支持多种输出分辨率 (1080p, 720p, 480p, 360p, 240p)
 - 🌐 **Base64编码输出**: 直接输出base64格式，便于AI分析
+- ☁️ **远程视频支持**: 支持HTTP/HTTPS URL、AWS S3、Azure Blob Storage、Google Cloud Storage
 - 🤖 **Azure OpenAI集成**: 内置Azure OpenAI Vision API支持
 - ⚡ **高性能处理**: 优化的FFmpeg集成和并行处理
 - 📱 **跨平台支持**: 支持 Windows、macOS 和 Linux
@@ -53,6 +54,12 @@ pip install smart-keyframe-extractor[azure]
 pip install smart-keyframe-extractor[all]
 ```
 
+### 远程视频支持（可选）
+如需处理远程视频（HTTP/HTTPS、云存储），请安装额外依赖：
+```bash
+pip install requests boto3 azure-storage-blob google-cloud-storage
+```
+
 ## 系统依赖
 
 确保系统已安装 FFmpeg:
@@ -84,6 +91,12 @@ smart-keyframe video.mp4 -k auto --resolution 480p --base64
 
 # 间隔模式 - 每10秒提取1帧
 smart-keyframe video.mp4 --mode interval --interval 10 --frames-per-interval 1 --base64
+
+# 远程视频处理 - HTTP/HTTPS URL
+smart-keyframe https://example.com/video.mp4 -k 5 --resolution 720p --base64
+
+# 云存储视频处理 - AWS S3
+smart-keyframe s3://my-bucket/video.mp4 -k auto --resolution 480p --base64
 
 # 同时保存文件和base64
 smart-keyframe video.mp4 -o output_frames -k 8 --resolution 720p --base64 --save-files
@@ -137,6 +150,42 @@ result = extract_top_k_keyframes(
     adaptive_mode="interval",
     interval=15.0,
     frames_per_interval=2,
+    resolution="720p",
+    return_base64=True
+)
+```
+
+#### 远程视频处理
+
+```python
+# HTTP/HTTPS URL
+result = extract_top_k_keyframes(
+    video_path="https://example.com/video.mp4",
+    k=5,
+    resolution="720p",
+    return_base64=True
+)
+
+# AWS S3 (需要配置AWS凭证)
+result = extract_top_k_keyframes(
+    video_path="s3://my-bucket/video.mp4",
+    k="auto",
+    resolution="480p",
+    return_base64=True
+)
+
+# Azure Blob Storage (需要配置Azure存储凭证)
+result = extract_top_k_keyframes(
+    video_path="https://myaccount.blob.core.windows.net/container/video.mp4",
+    k=5,
+    resolution="720p",
+    return_base64=True
+)
+
+# Google Cloud Storage (需要配置GCP凭证)
+result = extract_top_k_keyframes(
+    video_path="gs://my-bucket/video.mp4",
+    k="auto",
     resolution="720p",
     return_base64=True
 )
@@ -287,6 +336,78 @@ for analysis in analyses:
     if analysis['success']:
         print(f"视频: {analysis['video_path']}")
         print(f"分析: {analysis['analysis'][:200]}...")
+```
+
+## 🌐 远程视频支持
+
+### 支持的存储类型
+
+- **HTTP/HTTPS URL**: 直接支持，无需额外配置
+- **AWS S3**: 需要配置AWS凭证
+- **Azure Blob Storage**: 需要配置Azure存储凭证  
+- **Google Cloud Storage**: 需要配置GCP凭证
+
+### 依赖安装
+
+```bash
+# 安装所有远程视频依赖
+pip install requests boto3 azure-storage-blob google-cloud-storage
+
+# 或按需安装
+pip install requests                    # HTTP/HTTPS支持
+pip install boto3                      # AWS S3支持
+pip install azure-storage-blob         # Azure Blob支持
+pip install google-cloud-storage       # Google Cloud支持
+```
+
+### 云服务配置
+
+#### AWS S3配置
+
+```bash
+# 方法1: 使用AWS CLI
+aws configure
+
+# 方法2: 环境变量
+export AWS_ACCESS_KEY_ID="your-access-key"
+export AWS_SECRET_ACCESS_KEY="your-secret-key"
+export AWS_DEFAULT_REGION="us-east-1"
+```
+
+#### Azure Blob Storage配置
+
+```bash
+# 方法1: 连接字符串
+export AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=...;AccountKey=...;EndpointSuffix=core.windows.net"
+
+# 方法2: 账户名+密钥
+export AZURE_STORAGE_ACCOUNT_NAME="your-account-name"
+export AZURE_STORAGE_ACCOUNT_KEY="your-account-key"
+```
+
+#### Google Cloud Storage配置
+
+```bash
+# 方法1: 使用gcloud CLI
+gcloud auth login
+
+# 方法2: 服务账户密钥
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account-key.json"
+```
+
+### 缓存配置
+
+```bash
+# 设置自定义缓存目录
+export REMOTE_VIDEO_CACHE_DIR="/path/to/cache/directory"
+```
+
+### 配置检查
+
+运行配置检查脚本来验证设置：
+
+```bash
+python scripts/setup_remote_video.py
 ```
 
 ## 参数说明

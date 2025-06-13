@@ -23,6 +23,20 @@ except ImportError:
     AzureOpenAIAnalyzer = None
     analyze_video_with_azure_openai = None
 
+# 远程视频支持（可选导入）
+try:
+    from .remote_video_utils import (
+        RemoteVideoDownloader, 
+        is_remote_url, 
+        get_video_url_info
+    )
+    _has_remote = True
+except ImportError:
+    _has_remote = False
+    RemoteVideoDownloader = None
+    is_remote_url = None
+    get_video_url_info = None
+
 __version__ = "0.1.0"
 __author__ = "jiajunchen"
 __email__ = "your-email@example.com"
@@ -44,4 +58,12 @@ if _has_azure:
     __all__.extend([
         "AzureOpenAIAnalyzer",
         "analyze_video_with_azure_openai"
+    ])
+
+# 只有在成功导入远程视频模块时才添加到__all__
+if _has_remote:
+    __all__.extend([
+        "RemoteVideoDownloader",
+        "is_remote_url", 
+        "get_video_url_info"
     ])
