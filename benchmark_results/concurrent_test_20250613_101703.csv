@@ -1,0 +1,4 @@
+task_id,thread_id,video_path,video_filename,config,success,execution_time,memory_usage,keyframes_extracted,error,timestamp,video_size_mb,video_duration,fps_processed
+iter_1_config_2_video_2,1,videos/785023.mp4,785023.mp4,"{'name': 'fast', 'k': 5, 'resolution': '720p'}",True,4.011754035949707,184.53125,5,,2025-06-13T10:16:59.389986,1.0878782272338867,12.0,44.86815452467997
+iter_1_config_1_video_1,0,videos/785023.mp4,785023.mp4,"{'name': 'standard', 'k': 5, 'resolution': 'original'}",True,3.9962031841278076,181.390625,5,,2025-06-13T10:16:59.394578,1.0878782272338867,12.0,45.042754761551485
+iter_1_config_3_video_3,0,videos/785023.mp4,785023.mp4,"{'name': 'ultra_fast', 'k': 3, 'resolution': '480p'}",True,3.1909430027008057,30.640625,3,,2025-06-13T10:17:02.600992,1.0878782272338867,12.0,56.40965690946171

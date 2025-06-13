@@ -21,10 +21,12 @@ def main():
     print("1. 快速基准测试 - 基本性能和配置对比")
     print("2. 内存压力测试 - 检查内存泄漏和批量处理")
     print("3. 完整压力测试 - 全面的性能分析 (需要额外依赖)")
-    print("4. 退出")
+    print("4. 并发压力测试 - 多线程并发和大规模测试")
+    print("5. 云服务器压力测试 - 专为云环境设计的压力测试")
+    print("6. 退出")
     
     try:
-        choice = input("\n请选择测试工具 (1-4): ").strip()
+        choice = input("\n请选择测试工具 (1-6): ").strip()
         
         if choice == "1":
             print("\n🚀 启动快速基准测试...")
@@ -46,6 +48,21 @@ def main():
                 print("请安装: pip install matplotlib pandas")
                 
         elif choice == "4":
+            print("\n🚀 启动并发压力测试...")
+            try:
+                from benchmark.concurrent_stress_test import main as concurrent_main
+                concurrent_main()
+            except ImportError as e:
+                print(f"❌ 缺少依赖库: {e}")
+                print("请安装: pip install psutil")
+                
+        elif choice == "5":
+            print("\n🚀 云服务器压力测试工具...")
+            print("请使用以下命令启动云服务器压力测试:")
+            print("python benchmark/cloud_stress_test.py --video-dirs /path/to/videos")
+            print("或者运行部署脚本: bash deploy_cloud_stress_test.sh")
+                
+        elif choice == "6":
             print("👋 再见!")
             return
             

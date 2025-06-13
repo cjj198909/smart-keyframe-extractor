@@ -1,0 +1,127 @@
+{
+  "system_info": {
+    "cpu_count": 8,
+    "cpu_logical_count": 8,
+    "cpu_freq": 3504,
+    "memory_total": 16.0,
+    "memory_available": 3.1103515625,
+    "disk_free": 22.63576889038086,
+    "python_version": "3.11.5 (main, Dec 26 2024, 21:06:02) [Clang 16.0.0 (clang-1600.0.26.6)]",
+    "platform": "darwin",
+    "hostname": "cusredb10lts02-tun0.network.microsoft.com",
+    "timestamp": "2025-06-13T10:15:17.184629"
+  },
+  "test_config": {
+    "max_workers": 2,
+    "total_tasks": 3
+  },
+  "results": [
+    {
+      "task_id": "iter_1_config_1_video_1",
+      "thread_id": 0,
+      "video_path": "videos/785023.mp4",
+      "video_filename": "785023.mp4",
+      "config": {
+        "name": "standard",
+        "k": 5,
+        "frame_skip": 1,
+        "resolution": "original"
+      },
+      "success": false,
+      "execution_time": 5.0067901611328125e-06,
+      "memory_usage": 0.0,
+      "keyframes_extracted": 0,
+      "error": "extract_top_k_keyframes() got an unexpected keyword argument 'frame_skip'",
+      "timestamp": "2025-06-13T10:15:17.228603",
+      "video_size_mb": 1.0878782272338867,
+      "video_duration": 12.0,
+      "fps_processed": 0.0
+    },
+    {
+      "task_id": "iter_1_config_3_video_3",
+      "thread_id": 0,
+      "video_path": "videos/785023.mp4",
+      "video_filename": "785023.mp4",
+      "config": {
+        "name": "ultra_fast",
+        "k": 3,
+        "frame_skip": 3,
+        "resolution": "480p"
+      },
+      "success": false,
+      "execution_time": 1.4781951904296875e-05,
+      "memory_usage": 0.0,
+      "keyframes_extracted": 0,
+      "error": "extract_top_k_keyframes() got an unexpected keyword argument 'frame_skip'",
+      "timestamp": "2025-06-13T10:15:17.247488",
+      "video_size_mb": 1.0878782272338867,
+      "video_duration": 12.0,
+      "fps_processed": 0.0
+    },
+    {
+      "task_id": "iter_1_config_2_video_2",
+      "thread_id": 1,
+      "video_path": "videos/785023.mp4",
+      "video_filename": "785023.mp4",
+      "config": {
+        "name": "fast",
+        "k": 5,
+        "frame_skip": 2,
+        "resolution": "720p"
+      },
+      "success": false,
+      "execution_time": 4.0531158447265625e-06,
+      "memory_usage": 0.0,
+      "keyframes_extracted": 0,
+      "error": "extract_top_k_keyframes() got an unexpected keyword argument 'frame_skip'",
+      "timestamp": "2025-06-13T10:15:17.264273",
+      "video_size_mb": 1.0878782272338867,
+      "video_duration": 12.0,
+      "fps_processed": 0.0
+    }
+  ],
+  "analysis": {
+    "summary": {
+      "total_tasks": 3,
+      "successful_tasks": 0,
+      "failed_tasks": 3,
+      "success_rate": 0.0
+    },
+    "performance": {
+      "execution_time": {
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "std": 0
+      },
+      "memory_usage": {
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "std": 0
+      },
+      "keyframes_extracted": {
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "total": 0
+      }
+    },
+    "system_performance": {
+      "avg_cpu_percent": 0.0,
+      "max_cpu_percent": 0.0,
+      "min_cpu_percent": 0.0,
+      "avg_memory_percent": 80.6,
+      "max_memory_percent": 80.6,
+      "min_memory_percent": 80.6,
+      "avg_disk_read_speed": 0.0,
+      "avg_disk_write_speed": 0.0,
+      "avg_network_recv_speed": 0.0,
+      "avg_network_sent_speed": 0.0
+    },
+    "timestamp": "2025-06-13T10:15:18.189890"
+  }
+}
