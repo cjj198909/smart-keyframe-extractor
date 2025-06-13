@@ -24,7 +24,7 @@ except ImportError as e:
 def test_azure_blob_video_processing():
     """测试Azure Blob视频处理"""
     # Azure Blob视频URL
-    blob_url = "https://studysa2024.blob.core.windows.net/wyze/insight_videos/785490.mp4"
+    blob_url = "https://studysa2024.blob.core.windows.net/testdata/insight_videos/785490.mp4"
     
     print(f"🎬 开始测试Azure Blob视频: {blob_url}")
     print("=" * 80)

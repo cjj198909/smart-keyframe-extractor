@@ -18,7 +18,7 @@ class ProjectDashboard:
     
     def __init__(self):
         self.project_root = Path(__file__).parent.parent
-        self.results_dir = self.project_root / "wyze_auto_results"
+        self.results_dir = self.project_root / "test_auto_results"
         self.benchmark_dir = self.project_root / "benchmark_results"
         
     def get_project_status(self) -> Dict[str, Any]:
@@ -50,7 +50,7 @@ class ProjectDashboard:
                 'concurrent_processing': '✅ 8-worker并发测试通过',
                 'memory_stability': '✅ 无内存泄漏',
                 'multi_format_support': '✅ MP4/MOV格式支持',
-                'real_data_validation': '✅ 真实Wyze AI数据集验证'
+                'real_data_validation': '✅ 真实测试数据集验证'
             }
         }
         

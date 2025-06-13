@@ -77,6 +77,7 @@ if [ $? -eq 0 ]; then
         echo "   - 🌍 支持HTTP/HTTPS、Azure Blob、Google Cloud"
         echo "   - 🔧 CLI和API双接口支持"
         echo "   - 📦 模块化依赖管理"
+        echo "   - 🧹 项目文件优化，移除客户敏感信息"
         echo ""
     fi
     echo "🔗 下一步: 访问你的 GitHub 仓库查看完整项目"
@@ -88,3 +89,4 @@ else
     echo "   3. GitHub 认证是否配置正确"
     echo "   4. 是否有权限推送到该仓库"
 fi
+

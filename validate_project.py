@@ -198,7 +198,7 @@ class ProjectValidator:
         print("📊 验证测试结果...")
         
         results_dirs = [
-            ('wyze_auto_results', '大规模压力测试结果'),
+            ('test_auto_results', '大规模压力测试结果'),
             ('benchmark_results', '基准测试结果'),
             ('cloud_stress_results', '云服务器测试结果')
         ]

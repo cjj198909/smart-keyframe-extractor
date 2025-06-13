@@ -50,8 +50,8 @@
 - **依赖**: `psutil`, `pandas`
 - **适用场景**: 云服务器性能验证、生产环境压力测试
 
-### 6. Wyze视频压力测试 (`wyze_stress_test.py`)
-- **用途**: 专门针对Wyze AI视频数据集的大规模测试
+### 6. 大规模视频压力测试 (`large_dataset_stress_test.py`)
+- **用途**: 专门针对大规模视频数据集的测试
 - **特点**: 
   - 支持多视频目录批量处理
   - 真实数据集验证
@@ -112,8 +112,8 @@ python benchmark/concurrent_stress_test.py
 # 云服务器压力测试
 python benchmark/cloud_stress_test.py --video-dirs /path/to/videos
 
-# Wyze视频压力测试
-python benchmark/wyze_stress_test.py --video-dirs /path/to/wyze_videos
+# 大规模视频压力测试
+python benchmark/large_dataset_stress_test.py --video-dirs /path/to/test_videos
 
 # 智能性能优化器
 python benchmark/performance_optimizer.py --analyze history_results/

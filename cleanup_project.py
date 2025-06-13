@@ -51,8 +51,8 @@ class ProjectCleaner:
                 "stress_test_*.log",
                 "benchmark_results/*.json",
                 "benchmark_results/*.csv", 
-                "wyze_auto_results/*.json",
-                "wyze_auto_results/*.csv"
+                "test_auto_results/*.json",
+                "test_auto_results/*.csv"
             ],
             
             # 测试输出目录（保留最新的示例）

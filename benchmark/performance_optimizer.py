@@ -18,7 +18,7 @@ import argparse
 class PerformanceAnalyzer:
     """性能分析器"""
     
-    def __init__(self, results_dir: str = "wyze_auto_results"):
+    def __init__(self, results_dir: str = "test_auto_results"):
         self.results_dir = Path(results_dir)
         self.system_info = self._get_system_info()
         
@@ -303,7 +303,7 @@ class AutoOptimizer:
 def main():
     """主函数"""
     parser = argparse.ArgumentParser(description='智能性能分析和优化工具')
-    parser.add_argument('--results-dir', default='wyze_auto_results',
+    parser.add_argument('--results-dir', default='test_auto_results',
                        help='测试结果目录')
     parser.add_argument('--target', choices=['speed', 'quality', 'balanced'], 
                        default='balanced', help='优化目标')

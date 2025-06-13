@@ -61,7 +61,7 @@ Smart Keyframe Extractor
 - **状态**: ✅ 完全验证
 
 #### Azure Blob Storage测试结果
-- **测试文件**: `https://studysa2024.blob.core.windows.net/wyze/insight_videos/785490.mp4`
+- **测试文件**: `https://studysa2024.blob.core.windows.net/testdata/insight_videos/785490.mp4`
 - **视频规格**: 3.17MB, 5.87秒, 88帧, 2560x1440 (4K)
 - **首次处理**: 25秒 (22s下载 + 3s处理)
 - **缓存处理**: 3秒 (88%性能提升)
@@ -169,7 +169,7 @@ pip install smart-keyframe-extractor[all]
 5. **performance_optimizer.py** - 性能优化器
 6. **intelligent_batch_processor.py** - 智能批处理器
 7. **branch_comparator.py** - 分支性能对比
-8. **wyze_stress_test.py** - 真实数据测试
+8. **large_dataset_stress_test.py** - 大规模数据测试
 9. **quick_benchmark.py** - 快速基准测试
 
 ### 验证和诊断工具

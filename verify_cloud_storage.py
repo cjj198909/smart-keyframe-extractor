@@ -32,7 +32,7 @@ def test_cloud_storage_support():
         "s3://my-bucket/videos/sample.mp4",
         
         # Azure Blob Storage  
-        "https://studysa2024.blob.core.windows.net/wyze/insight_videos/785490.mp4",
+        "https://studysa2024.blob.core.windows.net/testdata/insight_videos/785490.mp4",
         "https://account.blob.core.windows.net/container/video.mp4",
         
         # Google Cloud Storage
@@ -103,7 +103,7 @@ def test_cloud_storage_support():
     print("  📈 状态: ✅ 完全验证")
     
     print("\nAzure Blob:")
-    print("  🎬 视频: studysa2024.blob.core.windows.net/wyze/insight_videos/785490.mp4")
+    print("  🎬 视频: studysa2024.blob.core.windows.net/testdata/insight_videos/785490.mp4")
     print("  ⏱️  性能: 首次25秒, 缓存3秒 (88%提升)")  
     print("  📈 状态: ✅ 完全验证")
     

@@ -30,7 +30,7 @@ htmlcov/
 stress_test_*.log
 benchmark_results/*.json
 benchmark_results/*.csv
-wyze_auto_results/
+test_auto_results/
 *_TEST_REPORT.md
 *_COMPLETION_*.md
 *_SUMMARY.md
