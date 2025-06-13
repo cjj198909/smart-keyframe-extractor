@@ -11,6 +11,7 @@ botocore>=1.29.0
 # Azure Blob Storage支持
 azure-storage-blob>=12.14.0
 azure-core>=1.26.0
+azure-identity>=1.20.0
 
 # Google Cloud Storage支持
 google-cloud-storage>=2.7.0

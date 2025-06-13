@@ -249,11 +249,29 @@ class RemoteVideoDownloader:
             
             logger.info(f"从Azure下载: account={account_name}, container={container_name}, blob={blob_name}")
             
-            # 创建blob客户端（使用匿名访问或SAS token）
-            blob_service_client = BlobServiceClient(account_url=f"https://{account_name}.blob.core.windows.net")
+            # 尝试使用Azure CLI身份验证
+            blob_service_client = None
+            try:
+                from azure.identity import DefaultAzureCredential
+                
+                credential = DefaultAzureCredential()
+                blob_service_client = BlobServiceClient(
+                    account_url=f"https://{account_name}.blob.core.windows.net",
+                    credential=credential
+                )
+                logger.info("使用Azure CLI身份验证")
+                
+            except ImportError:
+                logger.warning("azure-identity未安装，尝试匿名访问")
+                blob_service_client = BlobServiceClient(account_url=f"https://{account_name}.blob.core.windows.net")
+            except Exception as e:
+                logger.warning(f"Azure身份验证失败，尝试匿名访问: {e}")
+                blob_service_client = BlobServiceClient(account_url=f"https://{account_name}.blob.core.windows.net")
+            
             blob_client = blob_service_client.get_blob_client(container=container_name, blob=blob_name)
             
             # 下载文件
+            logger.info("开始下载Azure Blob文件...")
             with open(output_path, 'wb') as f:
                 download_stream = blob_client.download_blob()
                 f.write(download_stream.readall())

@@ -48,6 +48,7 @@ remote = [
     "botocore>=1.29.0",        # AWS核心库
     "azure-storage-blob>=12.14.0",  # Azure Blob Storage支持
     "azure-core>=1.26.0",      # Azure核心库
+    "azure-identity>=1.20.0",  # Azure身份验证
     "google-cloud-storage>=2.7.0",  # Google Cloud Storage支持
     "google-api-core>=2.11.0", # Google API核心库
 ]
@@ -69,6 +70,7 @@ all = [
     "botocore>=1.29.0", 
     "azure-storage-blob>=12.14.0",  # Azure Blob
     "azure-core>=1.26.0",
+    "azure-identity>=1.20.0", # Azure身份验证
     "google-cloud-storage>=2.7.0",  # Google Cloud
     "google-api-core>=2.11.0",
     "pytest>=6.0",            # 开发工具
